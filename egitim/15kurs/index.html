@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude, MCP ve YZ Ajanları Öğrenim Yol Haritası</title>
+    <!-- Roboto Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --desk-bg: #2b2b2b;
+            --paper-bg: #fffcf8;
+            --grid-color: #b0d4e3;
+            --margin-color: rgba(231, 76, 60, 0.7);
+            --text-dark: #3a3a3a;
+            --text-light: #555;
+            --link-color: #2980b9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--desk-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: var(--paper-bg);
+            /* Kareli Kağıt (Graph paper) deseni */
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 24px 24px;
+            width: 100%;
+            max-width: 900px;
+            padding: 50px 50px 60px 90px;
+            box-shadow: 10px 15px 25px rgba(0,0,0,0.5);
+            position: relative;
+            border-radius: 3px 15px 15px 3px;
+        }
+
+        /* Sol Taraftaki Kırmızı Çizgi (Kenar boşluğu) */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 70px;
+            width: 2px;
+            background-color: var(--margin-color);
+            box-shadow: 2px 0 0 rgba(231, 76, 60, 0.2);
+        }
+
+        /* Spiral Defter Delikleri (Sol kenar) */
+        .container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 20px;
+            background-image: radial-gradient(circle at 10px 10px, var(--desk-bg) 7px, transparent 8px);
+            background-size: 20px 48px;
+            background-position: 0 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1; /* Çizgilerin / arka planın üzerinde kalması için */
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            padding: 5px 15px;
+            background-color: rgba(255, 252, 248, 0.9);
+            display: inline-block;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        header .subtitle {
+            display: inline-block;
+            font-style: italic;
+            background-color: rgba(255, 255, 0, 0.35); /* Fosforlu kalemle çizilmiş hissi */
+            padding: 4px 10px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 2px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .info-alert {
+            background-color: #fef9e7;
+            border: 1px dashed #f1c40f;
+            border-left: 4px solid #f1c40f;
+            padding: 15px 20px;
+            font-size: 0.95rem;
+            color: #555;
+            border-radius: 4px;
+            text-align: left;
+            margin: 0 auto;
+            max-width: 80% !important;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+            /* Küçük bir bant bantlanmış hissi */
+            position: relative;
+        }
+
+        .info-alert i {
+            color: #f39c12;
+            margin-right: 10px;
+        }
+
+        .roadmap-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-card {
+            background-color: rgba(255, 255, 255, 0.7); /* Izgara hafif gözüksün */
+            border: 2px dashed #bdc3c7; /* Kalemle çizilmiş gibi */
+            border-radius: 6px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .section-card:hover {
+            transform: rotate(1deg) scale(1.01);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-color: #95a5a6;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-header i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-right: 12px;
+            color: #2c3e50;
+        }
+
+        .card-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .course-list {
+            list-style: none;
+        }
+
+        .course-item {
+            margin-bottom: 15px;
+        }
+
+        .course-link {
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            background-color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-left: 4px solid var(--link-color);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .course-link:hover {
+            background-color: white;
+            border-left-color: #e74c3c;
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .course-title {
+            font-weight: 700;
+            color: var(--link-color);
+            font-size: 1.05rem;
+            text-decoration: underline;
+            text-decoration-color: rgba(41, 128, 185, 0.3);
+        }
+
+        .course-number {
+            background-color: #34495e;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .course-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .course-host {
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+            padding: 2px 8px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            background-color: #f9f9f9;
+            color: #555;
+        }
+
+        footer {
+            text-align: right;
+            margin-top: 50px;
+            padding-top: 20px;
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px 40px 60px;
+            }
+            .container::before {
+                left: 50px;
+            }
+            .container::after {
+                left: 15px;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Claude, MCP ve YZ Ajanlarında Uzmanlaşmak İçin 15 Ücretsiz Kurs</h1><br>
+        <div class="subtitle">Ücretsiz Anthropic Öğrenim Yol Haritası</div>
+        
+        <div class="info-alert">
+            <i class="fa-solid fa-circle-check"></i>
+            <strong>Bilgilendirme:</strong> Görseldeki bağlantılar teyit edilmiş ve Anthropic'in sunduğu resmi eğitim kaynakları oldukları doğrulanmıştır. Öğrenim sürecini kolaylaştırmak adına her bir eğitime <strong>faydalı Türkçe açıklamalar</strong> ve bağlam detayları eklenmiştir.
+        </div>
+    </header>
+
+    <div class="roadmap-grid">
+        
+        <!-- Bölüm 1 -->
+        <article class="section-card section-1">
+            <div class="card-header">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h2>Bölüm 1 - Temeller (Foundation)</h2>
+            </div>
+            <div class="card-body">
+                <ul class="course-list">
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/claude-101" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Claude 101</span>
+                                <span class="course-number">1</span>
+                            </div>
+                            <span class="course-desc">Claude yapay zeka asistanına giriş, temel özellikleri anlama ve günlük verimlilik senaryoları.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/ai-fluency-framework-foundations" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">AI Fluency: Framework & Foundations</span>
+                                <span class="course-number">2</span>
+                            </div>
+                            <span class="course-desc">Yapay zeka okuryazarlığı için temel kavramlar ve yapısal çerçevelerin incelenmesi.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/ai-fluency-for-students" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">AI Fluency for Students</span>
+                                <span class="course-number">3</span>
+                            </div>
+                            <span class="course-desc">Öğrencilerin üretken yapay zekayı öğrenme süreçlerine nasıl entegre edebileceklerini anlatan rehber.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/ai-fluency-for-educators" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">AI Fluency for Educators</span>
+                                <span class="course-number">4</span>
+                            </div>
+                            <span class="course-desc">Eğitimciler için yapay zeka araçlarını müfredata dahil etme ve verimli sınıf yönetimi araçları.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/teaching-ai-fluency" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Teaching AI Fluency</span>
+                                <span class="course-number">5</span>
+                            </div>
+                            <span class="course-desc">Yapay zeka kavramlarını başkalarına doğru ve etkili bir şekilde aktarmanın pedagojik yöntemleri.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Bölüm 2 -->
+        <article class="section-card section-2">
+            <div class="card-header">
+                <i class="fa-solid fa-code"></i>
+                <h2>Bölüm 2 - Geliştirici Temelleri</h2>
+            </div>
+            <div class="card-body">
+                <ul class="course-list">
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Claude Code in Action</span>
+                                <span class="course-number">6</span>
+                            </div>
+                            <span class="course-desc">Yazılım geliştirme ve kodlama süreçlerinde Claude'u aktif bir çift taraflı (pair) programcı olarak kullanma.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Building with the Claude API</span>
+                                <span class="course-number">7</span>
+                            </div>
+                            <span class="course-desc">Anthropic API'sini kullanarak kendi uygulamalarınızı yaratma ve temel servis entegrasyonları.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://github.com/anthropics/prompt-eng-interactive-tutorial" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Prompt Engineering Tutorial</span>
+                                <span class="course-number">8</span>
+                            </div>
+                            <span class="course-desc">İstem (prompt) mühendisliğinin temellerini interaktif olarak öğreten zengin GitHub repoları ve pratikleri.</span>
+                            <span class="course-host"><i class="fa-brands fa-github"></i> GitHub</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Bölüm 3 -->
+        <article class="section-card section-3">
+            <div class="card-header">
+                <i class="fa-solid fa-cloud"></i>
+                <h2>Bölüm 3 - Platform Entegrasyonları</h2>
+            </div>
+            <div class="card-body">
+                <ul class="course-list">
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/claude-in-amazon-bedrock" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Claude with Amazon Bedrock</span>
+                                <span class="course-number">9</span>
+                            </div>
+                            <span class="course-desc">AWS bulut ekosisteminde, Amazon Bedrock servisi üzerinden Claude modellerini dağıtma ve ince ayar (fine-tuning) yapma.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/claude-with-google-vertex" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Claude with Google Cloud Vertex AI</span>
+                                <span class="course-number">10</span>
+                            </div>
+                            <span class="course-desc">Google Cloud veri altyapısı üzerinde Vertex AI kullanarak kurumsal seviyede Claude entegrasyonları.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Bölüm 4 -->
+        <article class="section-card section-4">
+            <div class="card-header">
+                <i class="fa-solid fa-microchip"></i>
+                <h2>Bölüm 4 - İleri YZ Mühendisliği</h2>
+            </div>
+            <div class="card-body">
+                <ul class="course-list">
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Intro to Model Context Protocol</span>
+                                <span class="course-number">11</span>
+                            </div>
+                            <span class="course-desc">Yapay zeka modellerini dış veri kaynaklarına bağlayan MCP (Model Context Protocol) standardının temelleri.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/model-context-protocol-advanced-topics" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">MCP: Advanced Topics</span>
+                                <span class="course-number">12</span>
+                            </div>
+                            <span class="course-desc">Gelişmiş veri mimarileri için özel MCP sunucuları oluşturma ve güvenli bağlam (context) yönetimi.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/ai-fluency-for-nonprofits" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">AI Fluency for Nonprofits</span>
+                                <span class="course-number">13</span>
+                            </div>
+                            <span class="course-desc">Kar amacı gütmeyen kuruluşlar ve STK'lar için kısıtlı kaynaklarla yapay zekanın maksimum etkisi ve kullanımı.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Bölüm 5 -->
+        <article class="section-card section-5">
+            <div class="card-header">
+                <i class="fa-solid fa-robot"></i>
+                <h2>Bölüm 5 - Ajan Geliştirme</h2>
+            </div>
+            <div class="card-body">
+                <ul class="course-list">
+                    <li class="course-item">
+                        <a href="https://anthropic.skilljar.com/introduction-to-agent-skills" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Introduction to Agent Skills</span>
+                                <span class="course-number">14</span>
+                            </div>
+                            <span class="course-desc">Claude'a dışarıdan API veya sistem araçları (tools) kullandırma ve özerk şekilde eylem yapan ajan (agent) özellikleri kazandırma.</span>
+                            <span class="course-host"><i class="fa-solid fa-graduation-cap"></i> Skilljar</span>
+                        </a>
+                    </li>
+                    <li class="course-item">
+                        <a href="https://www.coursera.org/learn/claude-code-in-action" target="_blank" class="course-link">
+                            <div class="course-header">
+                                <span class="course-title">Claude Code Course (Coursera)</span>
+                                <span class="course-number">15</span>
+                            </div>
+                            <span class="course-desc">Coursera altyapısı üzerinden pratiklerle desteklenmiş sertifikalı ve kapsamlı Claude geliştirme eğitimi.</span>
+                            <span class="course-host"><i class="fa-solid fa-certificate"></i> Coursera</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+    </div>
+
+    <footer>
+        <p>Brij Kishore Pandey tarafından derlenen yol haritası referans alınarak oluşturulmuştur.</p>
+    </footer>
+</div>
+
+</body>
+</html>
