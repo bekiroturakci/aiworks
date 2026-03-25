@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yerel (Local) LLM ve Yapay Zeka (AI) Rehberi (2026)</title>
+    <!-- Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-navy: #1A2B5E;
+            --primary-red: #E31E24;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --text-dark: #333333;
+            --text-muted: #555555;
+            --border-color: #E2E8F0;
+        }
+
+        /* Temel Stiller */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Kahraman (Hero) Alanı */
+        header {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #0d1630 100%);
+            color: var(--bg-white);
+            padding: 50px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-red);
+            box-shadow: 0 10px 30px rgba(26, 43, 94, 0.2);
+        }
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: #d1d5db;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .badge-2026 {
+            display: inline-block;
+            background: var(--primary-red);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Bölüm Ayarları */
+        section {
+            padding: 80px 0;
+        }
+        .alt-bg {
+            background-color: var(--bg-white);
+        }
+        .section-title {
+            font-size: 2.4rem;
+            color: var(--primary-navy);
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 800;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-red);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        .lead-text {
+            text-align: center;
+            font-size: 1.15rem;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            color: var(--text-muted);
+        }
+
+        /* İnfografik Grid (Neden Önemlidir?) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: var(--bg-white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-navy);
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-top-color: var(--primary-red);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(26, 43, 94, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--primary-red);
+            margin: 0 auto 25px auto;
+        }
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary-navy);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Karşılaştırma Tablosu (Bulut vs Yerel) */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-white);
+        }
+        th {
+            background: var(--primary-navy);
+            color: var(--bg-white);
+            padding: 20px;
+            font-size: 1.15rem;
+            text-align: left;
+            font-weight: 700;
+        }
+        th.cloud-col {
+            background: #2c3e50;
+        }
+        th.local-col {
+            background: var(--primary-red);
+        }
+        td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        td span.desc {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-top: 5px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .check-icon { color: #10b981; font-size: 1.2rem; margin-right: 8px;}
+        .cross-icon { color: #ef4444; font-size: 1.2rem; margin-right: 8px;}
+
+        /* Kurulum Araçları - Adım/Kart Yapısı */
+        .tools-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .tool-row {
+            display: flex;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .tool-row:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--primary-navy);
+        }
+        .tool-number {
+            background: var(--primary-navy);
+            color: var(--bg-white);
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 900;
+        }
+        .tool-number i {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            opacity: 0.5;
+        }
+        .tool-content {
+            padding: 40px;
+            flex: 1;
+        }
+        .tool-content h3 {
+            color: var(--primary-navy);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        .tool-content p {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+        .tool-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tool-content ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-muted);
+        }
+        .tool-content ul li::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--primary-red);
+            font-size: 0.8rem;
+        }
+        .tool-badge {
+            display: inline-block;
+            padding: 6px 15px;
+            background: rgba(227, 30, 36, 0.1);
+            color: var(--primary-red);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* VRAM İnfografiği ve Güncel Bilgiler */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .info-box {
+            background: var(--bg-light);
+            border-left: 5px solid var(--primary-red);
+            padding: 30px;
+            border-radius: 0 12px 12px 0;
+        }
+        .info-box.navy-border {
+            border-left-color: var(--primary-navy);
+        }
+        .info-box h4 {
+            color: var(--primary-navy);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-box h4 i {
+            color: var(--primary-red);
+        }
+        .info-box.navy-border h4 i {
+            color: var(--primary-navy);
+        }
+
+        /* VRAM Bar Grafiği (CSS İnfografik) */
+        .vram-chart {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+        }
+        .vram-chart h3 {
+            color: var(--primary-navy);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+        .vram-bar-container {
+            margin-bottom: 25px;
+        }
+        .vram-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .vram-label span.model-type {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+        .vram-track {
+            height: 28px;
+            background: #e2e8f0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .vram-fill {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .fill-8gb { width: 30%; background: linear-gradient(90deg, #3b82f6, #2563eb); }
+        .fill-16gb { width: 60%; background: linear-gradient(90deg, var(--primary-navy), #2c3e50); }
+        .fill-24gb { width: 85%; background: linear-gradient(90deg, var(--primary-red), #b91c1c); }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-navy);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        /* Responsive Kurallar */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .tool-row { flex-direction: column; }
+            .tool-number { width: 100%; height: 80px; flex-direction: row; gap: 15px; font-size: 2.2rem; }
+            .tool-number i { margin-top: 0; }
+            .vram-label { flex-direction: column; }
+            .vram-label span.model-type { margin-top: 5px; }
+            td, th { padding: 15px 10px; font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Alanı -->
+    <header>
+        <div class="container">
+            <span class="badge-2026"><i class="fa-solid fa-bolt"></i> 2026 GÜNCEL REHBER</span>
+            <h1>Yerel (Local) LLM ve Yapay Zeka (AI)</h1>
+            <p class="hero-subtitle">İnternet bağlantısına veya bulut hizmetlerine ihtiyaç duymadan, doğrudan kendi bilgisayarınızın donanımında çalışan sınır tanımayan yapay zeka deneyimi.</p>
+        </div>
+    </header>
+
+    <!-- NEDEN ÖNEMLİDİR? -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Neden Yerel Yapay Zeka?</h2>
+            <p class="lead-text">Bulut tabanlı modeller hızlı ve erişilebilir olsa da, verilerinizi tamamen kendi kontrolünüzde tutmanın ve maliyetleri sıfırlamanın tek yolu yerel yapay zeka kurmaktır.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Gizlilik ve Veri Güvenliği</h3>
+                    <p>Verileriniz cihazınızdan çıkmaz. Şirket içi belgeler, kişisel veriler veya kodlar asla harici sunucularla paylaşılmaz.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <h3>Ücretsiz ve Sınırsız</h3>
+                    <p>Aylık abonelikler veya API token ücretleri ödemenize gerek kalmaz. Donanımınız çalıştığı sürece kullanım tamamen ücretsizdir.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
+                    <h3>Çevrimdışı (Offline) Erişim</h3>
+                    <p>İnternet bağlantınız olmasa bile yapay zekayı kapalı ağlarda, seyahatlerde veya askeri standartlardaki intranetlerde kullanabilirsiniz.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-unlock-keyhole"></i></div>
+                    <h3>Sansürsüzlük ve Kontrol</h3>
+                    <p>Ticari firmaların koyduğu kısıtlamalar (guardrails) olmadan, modelinizin sınırlarını ticari sınırlar dışında siz belirlersiniz.</p>
+                </div>
+            </div>
+
+            <!-- Karşılaştırma İnfo-Tablosu -->
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Özellik</th>
+                            <th class="local-col">Yerel AI (Local LLM)</th>
+                            <th class="cloud-col">Bulut AI (ChatGPT, Gemini vb.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Veri Gizliliği</strong>
+                                <span class="desc">Veriler nerede işleniyor?</span>
+                            </td>
+                            <td><i class="fa-solid fa-check-circle check-icon"></i> 100% Cihaz İçi (Güvenli)</td>
+                            <td><i class="fa-solid fa-times-circle cross-icon"></i> Şirket Sunucularında İşlenir</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Maliyet</strong>
+                                <span class="desc">Uzun vadeli kullanım ücretleri</span>
+                            </td>
+                            <td><i class="fa-solid fa-check-circle check-icon"></i> Tamamen Ücretsiz (Sadece Elektrik)</td>
+                            <td><i class="fa-solid fa-times-circle cross-icon"></i> Aylık Abonelik veya API Ücretli</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Özelleştirme Mimarisi</strong>
+                                <span class="desc">Kurumsal verilere doğrudan entegrasyon</span>
+                            </td>
+                            <td><i class="fa-solid fa-check-circle check-icon"></i> Yüksek (Lokal RAG & Fine-tuning)</td>
+                            <td><i class="fa-solid fa-times-circle cross-icon"></i> Kısıtlı / Pahalı API RAG Servisleri</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Erişilebilirlik</strong>
+                                <span class="desc">Offline kullanım durumu</span>
+                            </td>
+                            <td><i class="fa-solid fa-check-circle check-icon"></i> İnternetsiz Çalışır</td>
+                            <td><i class="fa-solid fa-times-circle cross-icon"></i> İnternet Bağlantısı Zorunlu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- NASIL KURULUR? -->
+    <section class="alt-bg">
+        <div class="container">
+            <h2 class="section-title">Kurulum Araçları (2026 Standartları)</h2>
+            <p class="lead-text">Yerel modelleri kurmak artık herhangi bir program yüklemek kadar basittir. İhtiyacınıza en uygun olan altyapıyı seçin.</p>
+            
+            <div class="tools-list">
+                <!-- Tool 1 -->
+                <div class="tool-row">
+                    <div class="tool-number">
+                        <span>1</span>
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <div class="tool-content">
+                        <span class="tool-badge">EN POPÜLER & STANDART</span>
+                        <h3>Ollama</h3>
+                        <p>Terminal üzerinden çalışan en yaygın standart. Hem saniyeler içinde model indirmenizi sağlar, hem de yerleşik bir API sunucusu olarak çalışır.</p>
+                        <ul>
+                            <li><strong>Kurulum:</strong> ollama.com adresinden indirip sisteminize kurun.</li>
+                            <li><strong>Kullanım:</strong> Terminali açın ve komutu girin: <code>ollama run llama3</code></li>
+                            <li>Arka planda varsayılan olarak <strong>11434</strong> portunda yerel API yayınlar.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tool 2 -->
+                <div class="tool-row">
+                    <div class="tool-number">
+                        <span>2</span>
+                        <i class="fa-regular fa-window-maximize"></i>
+                    </div>
+                    <div class="tool-content">
+                        <span class="tool-badge">GÖRSEL ARAYÜZ (GUI) İÇİN LİDER</span>
+                        <h3>LM Studio</h3>
+                        <p>Karanlık modlu mükemmel tasarımıyla, komut satırı kullanmak istemeyenler için en şık ChatGPT benzeri masaüstü arayüzüdür.</p>
+                        <ul>
+                            <li>Hugging Face mağazasına doğrudan erişerek modelleri tek tıkla aratıp indirebilirsiniz.</li>
+                            <li>Sistem belleğinize (RAM/VRAM) göre en uygun kuantizasyonlu (sıkıştırılmış) modeli önerir.</li>
+                            <li>Dahili "Ağ Sunucusu" özelliği ile uygulamayı kendi kişisel API'nize dönüştürür.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tool 3 -->
+                <div class="tool-row">
+                    <div class="tool-number">
+                        <span>3</span>
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <div class="tool-content">
+                        <span class="tool-badge">LOKAL DOKÜMAN OKUYUCU</span>
+                        <h3>GPT4All & Jan</h3>
+                        <p>Her ikisi de açık kaynak kodlu ve yeni başlayan dostu masaüstü uygulamalarıdır. Tek tıkla indirilir ve kurulur.</p>
+                        <ul>
+                            <li>Özellikle GPT4All'un <strong>"Local Docs"</strong> özelliği ile bilgisayarınızdaki PDF dosyalarının olduğu klasörü okutabilir, yapay zekanın sadece o dosyalara bakarak cevap vermesini sağlayabilirsiniz (Lokal RAG).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tool 4 -->
+                <div class="tool-row">
+                    <div class="tool-number" style="background-color: var(--primary-red);">
+                        <span>4</span>
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div class="tool-content">
+                        <span class="tool-badge" style="background: rgba(26, 43, 94, 0.1); color: var(--primary-navy);">GELİŞTİRİCİLER İÇİN İLERİ SEVİYE</span>
+                        <h3>text-generation-webui & vLLM</h3>
+                        <p>İnce ayar yapılandırmaları ve endüstri standartlarında ölçeklenebilir altyapılar arayanlar için.</p>
+                        <ul>
+                            <li><strong>text-generation-webui:</strong> Gradio tabanlı detay parametre düzenleyici arayüz.</li>
+                            <li><strong>vLLM:</strong> Çok sayıda kullanıcıya API dağıtmak istediğiniz "production" seviyesindeki sunucular için dünyanın en hızlı açık kaynak LLM çıkarım motoru.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONANIM VE VRAM BİLGİLERİ -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">2026 Donanım ve Ekosistem Güncellemeleri</h2>
+            
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4><i class="fa-solid fa-code"></i> Kendi Copilot'unuzu Yaratın</h4>
+                    <p>VS Code eklentileri (`Continue.dev`, `Twinny` vb.) üzerinden Ollama lokal sunucunuzu entegre ederek, bulut tabanlı GitHub Copilot yerine <strong>ücretsiz ve %100 yerel çalışan</strong> kendi otonom kod asistanınızı devreye alabilirsiniz.</p>
+                </div>
+                <div class="info-box navy-border">
+                    <h4><i class="fa-solid fa-microchip"></i> Apple Silicon Süper Avantajı</h4>
+                    <p>Apple'ın M1/M2/M3/M4 işlemcilerindeki "Birleşik Bellek (Unified Memory)" mimarisi, devasa RAM havuzunu doğrudan yapay zekaya devredebilmektedir. 64GB RAM'li bir Mac, on binlerce dolarlık sunucularla yarışan bir AI istikrarı sunar.</p>
+                </div>
+            </div>
+
+            <!-- VRAM CSS Infografik -->
+            <div class="vram-chart">
+                <h3>VRAM İhtiyaç Analizi (Model Büyüklüğüne Göre)</h3>
+                <p style="text-align:center; color: var(--text-muted); margin-bottom: 30px;">
+                    Yerel çalıştırmanın en belirleyici bileşeni CPU değil; Ekran Kartı Belleğidir (VRAM).
+                </p>
+
+                <!-- Bar 1 -->
+                <div class="vram-bar-container">
+                    <div class="vram-label">
+                        <span>8GB VRAM (Minimum)</span>
+                        <span class="model-type">7B - 8B Parametre Arası (Örn: Llama 8B, Mistral)</span>
+                    </div>
+                    <div class="vram-track">
+                        <div class="vram-fill fill-8gb">Standart Çözünürlük</div>
+                    </div>
+                </div>
+
+                <!-- Bar 2 -->
+                <div class="vram-bar-container">
+                    <div class="vram-label">
+                        <span>16GB VRAM (Önerilen)</span>
+                        <span class="model-type">12B - 14B Parametre Arası Çok Dilli Modeller</span>
+                    </div>
+                    <div class="vram-track">
+                        <div class="vram-fill fill-16gb">Mükemmel Denge</div>
+                    </div>
+                </div>
+
+                <!-- Bar 3 -->
+                <div class="vram-bar-container" style="margin-bottom: 0;">
+                    <div class="vram-label">
+                        <span>24GB VRAM (Profesyonel)</span>
+                        <span class="model-type">30B - 34B Parametre Arası Zeki Modeller (Örn: RTX 3090/4090)</span>
+                    </div>
+                    <div class="vram-track">
+                        <div class="vram-fill fill-24gb">Endüstri Seviyesi Zeka</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 25px; font-size: 0.95rem; color: var(--text-muted);">
+                <i class="fa-solid fa-circle-info" style="color:var(--primary-navy);"></i> <strong>Not:</strong> Kuantizasyon (Quantization) teknolojilerindeki GGUF, AWQ gibi standartlar sayesinde, günümüzde 100GB boyutlarındaki modeller küçültülerek çok daha az VRAM ile çalışabilmektedir.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; AIWORKS</p>
+        </div>
+    </footer>
+
+</body>
+</html>
