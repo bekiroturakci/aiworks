@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools Rehberi</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ede6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 32px 16px; }
+  .page { background: #fffef7; border-radius: 14px; overflow: hidden; max-width: 720px; margin: 0 auto; box-shadow: 3px 6px 32px rgba(0,0,0,0.13); position: relative; }
+  .spine { position: absolute; left: 52px; top: 0; bottom: 0; width: 2px; background: #f4a0a0; z-index: 2; }
+  .header { background: #e74c3c; padding: 14px 24px 14px 72px; display: flex; align-items: center; justify-content: space-between; }
+  .header h1 { color: #fff; font-size: 15px; font-weight: 500; letter-spacing: 0.5px; }
+  .dots { display: flex; gap: 6px; }
+  .dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.4); display: inline-block; }
+  .rings { position: absolute; left: 20px; top: 60px; bottom: 0; display: flex; flex-direction: column; gap: 48px; padding: 28px 0; z-index: 3; pointer-events: none; }
+  .ring { width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid #c8c4bc; background: #fffef7; flex-shrink: 0; }
+  .content { padding: 8px 24px 32px 72px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 31px, #dde8f5 32px); background-size: 100% 32px; }
+  .section { margin-bottom: 2px; }
+  .sec-title { display: flex; align-items: center; gap: 8px; height: 32px; padding-top: 4px; }
+  .sec-name { font-size: 12px; font-weight: 600; color: #e74c3c; text-transform: uppercase; letter-spacing: 1.2px; }
+  .new-badge { font-size: 9px; font-weight: 700; color: #fff; background: #e74c3c; border-radius: 4px; padding: 1px 5px; letter-spacing: 0.5px; }
+  .tool-row { display: flex; align-items: center; height: 32px; padding-left: 4px; }
+  a.tool-badge { display: inline-flex; align-items: center; gap: 5px; background: #fff; border: 1px solid #e5e0d5; border-radius: 6px; padding: 3px 8px 3px 4px; margin-right: 10px; flex-shrink: 0; text-decoration: none; transition: box-shadow 0.15s, border-color 0.15s; }
+  a.tool-badge:hover { border-color: #e74c3c; box-shadow: 0 2px 8px rgba(231,76,60,0.18); }
+  a.tool-badge.is-new { border-color: #ffc0b8; background: #fff8f7; }
+  a.tool-badge.is-new:hover { border-color: #e74c3c; }
+  .badge-dot { width: 18px; height: 18px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .badge-name { font-size: 11.5px; font-weight: 600; color: #2c2c2a; white-space: nowrap; }
+  .tool-desc { font-size: 11.5px; color: #6b6860; line-height: 1.4; }
+  .divider { height: 32px; display: flex; align-items: center; }
+  .divider-line { height: 1px; background: #f0ebe0; flex: 1; }
+  .legend { padding: 6px 24px 0 72px; display: flex; align-items: center; gap: 8px; font-size: 10px; color: #b0aba0; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 2px; background: #ffc0b8; border: 1px solid #e74c3c; display: inline-block; }
+  .footer { text-align: center; padding: 12px; font-size: 10px; color: #b0aba0; border-top: 1px solid #f0ebe0; background: #fffef7; }
+  @media print {
+    body { background: none; padding: 0; }
+    .page { box-shadow: none; max-width: 100%; border-radius: 0; }
+    a.tool-badge { border-color: #e5e0d5 !important; box-shadow: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="spine"></div>
+  <div class="rings">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div>
+  </div>
+  <div class="header">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <h1>🤖 AI Tools Rehberi — 80+ Yapay Zeka Aracı</h1>
+  </div>
+  <div class="legend"><span class="legend-dot"></span> Yeni eklenen araçlar pembe çerçeveli</div>
+  <div class="content">
+
+    <!-- IDEAS -->
+    <div class="section">
+      <div class="sec-title"><span>💡</span><span class="sec-name">Ideas</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://claude.ai" target="_blank"><div class="badge-dot" style="background:#cc785c;">C</div><span class="badge-name">Claude</span></a><span class="tool-desc">Anthropic'in güçlü AI asistanı — metin, kod ve analiz.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://chatgpt.com" target="_blank"><div class="badge-dot" style="background:#10a37f;">G</div><span class="badge-name">ChatGPT</span></a><span class="tool-desc">OpenAI'nın sohbet tabanlı fikir ve içerik üretme aracı.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://perplexity.ai" target="_blank"><div class="badge-dot" style="background:#20808d;">P</div><span class="badge-name">Perplexity</span></a><span class="tool-desc">Kaynak göstererek cevap veren AI arama motoru.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://copilot.microsoft.com" target="_blank"><div class="badge-dot" style="background:#0078d4;">B</div><span class="badge-name">Bing Chat</span></a><span class="tool-desc">Microsoft'un web bağlantılı AI sohbet asistanı.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://gemini.google.com" target="_blank"><div class="badge-dot" style="background:#4285f4;">Ge</div><span class="badge-name">Gemini</span></a><span class="tool-desc">Google'ın gerçek zamanlı web erişimli fikir asistanı.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://notion.so/product/ai" target="_blank"><div class="badge-dot" style="background:#191919;">No</div><span class="badge-name">Notion AI</span></a><span class="tool-desc">Notlarının içinde fikirlerini genişleten entegre AI yazım ortağı.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- CODE — YENİ -->
+    <div class="section">
+      <div class="sec-title"><span>💻</span><span class="sec-name">Code</span><span class="new-badge">YENİ</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://claude.ai/code" target="_blank"><div class="badge-dot" style="background:#cc785c;">CC</div><span class="badge-name">Claude Code</span></a><span class="tool-desc">Terminal tabanlı AI kodlama ajanı — refactor, debug, yeni özellik.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://cursor.com" target="_blank"><div class="badge-dot" style="background:#1a1a2e;">Cu</div><span class="badge-name">Cursor AI</span></a><span class="tool-desc">AI ile bütünleşik kod editörü — projeyi anlayarak kod yazar.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://github.com/features/copilot" target="_blank"><div class="badge-dot" style="background:#24292e;">Co</div><span class="badge-name">GitHub Copilot</span></a><span class="tool-desc">Yazarken satır ve fonksiyon öneren AI kod asistanı.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://windsurf.ai" target="_blank"><div class="badge-dot" style="background:#0f766e;">Wi</div><span class="badge-name">Windsurf</span></a><span class="tool-desc">Cursor rakibi akıllı agentic kod editörü.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://bolt.new" target="_blank"><div class="badge-dot" style="background:#6d28d9;">Bo</div><span class="badge-name">Bolt</span></a><span class="tool-desc">Tarayıcıda prompt ile tam çalışan uygulama oluşturur.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://antigravity.dev" target="_blank"><div class="badge-dot" style="background:#0ea5e9;">Ag</div><span class="badge-name">Antigravity</span></a><span class="tool-desc">AI destekli kod üretimi ve otomasyon platformu.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- PRESENTATION -->
+    <div class="section">
+      <div class="sec-title"><span>🎤</span><span class="sec-name">Presentation</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://prezi.com" target="_blank"><div class="badge-dot" style="background:#3b7bbf;">P</div><span class="badge-name">Prezi</span></a><span class="tool-desc">Hareketli ve sinematik sunum deneyimi sunar.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://pitch.com" target="_blank"><div class="badge-dot" style="background:#6c5ce7;">P</div><span class="badge-name">Pitch</span></a><span class="tool-desc">Takımlar için modern, şık sunum oluşturma aracı.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://www.popai.pro" target="_blank"><div class="badge-dot" style="background:#e17055;">Po</div><span class="badge-name">PopAi</span></a><span class="tool-desc">Dosya yükleyip saniyeler içinde sunum çıkarır.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://slidesai.io" target="_blank"><div class="badge-dot" style="background:#00b894;">S</div><span class="badge-name">Slides AI</span></a><span class="tool-desc">Google Slides içinde AI ile otomatik slayt üretir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://slidebean.com" target="_blank"><div class="badge-dot" style="background:#a29bfe;">Sb</div><span class="badge-name">Slidebean</span></a><span class="tool-desc">Startup pitch deck'leri için özelleşmiş AI şablon aracı.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- WEBSITE -->
+    <div class="section">
+      <div class="sec-title"><span>🌐</span><span class="sec-name">Website</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://dora.run" target="_blank"><div class="badge-dot" style="background:#4a90d9;">D</div><span class="badge-name">Dora</span></a><span class="tool-desc">Prompt yazarak 3D animasyonlu web sitesi oluşturur.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://wegic.ai" target="_blank"><div class="badge-dot" style="background:#27ae60;">W</div><span class="badge-name">Wegic</span></a><span class="tool-desc">Sohbet ederek web sitesi tasarlatan AI builder.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://10web.io" target="_blank"><div class="badge-dot" style="background:#2980b9;">10</div><span class="badge-name">10Web</span></a><span class="tool-desc">WordPress tabanlı AI web sitesi oluşturma platformu.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://framer.com" target="_blank"><div class="badge-dot" style="background:#1a1a2e;">Fr</div><span class="badge-name">Framer</span></a><span class="tool-desc">Tasarımcılar için en gelişmiş AI web tasarım aracı.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://durable.co" target="_blank"><div class="badge-dot" style="background:#8e44ad;">Du</div><span class="badge-name">Durable</span></a><span class="tool-desc">30 saniyede hazır, SEO uyumlu işletme sitesi açar.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- WRITING -->
+    <div class="section">
+      <div class="sec-title"><span>✍️</span><span class="sec-name">Writing</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://rytr.me" target="_blank"><div class="badge-dot" style="background:#00cec9;">R</div><span class="badge-name">Rytr</span></a><span class="tool-desc">Blog, e-posta ve sosyal medya içeriği üreten uygun fiyatlı araç.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://jasper.ai" target="_blank"><div class="badge-dot" style="background:#e74c3c;">J</div><span class="badge-name">Jasper</span></a><span class="tool-desc">Kurumsal ekipler için marka sesiyle içerik üretir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://copy.ai" target="_blank"><div class="badge-dot" style="background:#ff7675;">C</div><span class="badge-name">Copy AI</span></a><span class="tool-desc">Pazarlama metinleri ve reklam kopyası oluşturur.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://blaze.today" target="_blank"><div class="badge-dot" style="background:#b8860b;">T</div><span class="badge-name">Textblaze</span></a><span class="tool-desc">Klavye kısayollarıyla metin şablonlarını anında genişletir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://writesonic.com" target="_blank"><div class="badge-dot" style="background:#6c5ce7;">W</div><span class="badge-name">Writesonic</span></a><span class="tool-desc">SEO odaklı makale ve web içeriği üretme platformu.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://grammarly.com" target="_blank"><div class="badge-dot" style="background:#15c39a;">Gr</div><span class="badge-name">Grammarly AI</span></a><span class="tool-desc">Yazım, ton ve netliği gerçek zamanlı düzelten AI editörü.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- AI MODELS -->
+    <div class="section">
+      <div class="sec-title"><span>🤖</span><span class="sec-name">AI Models</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://rendernet.ai" target="_blank"><div class="badge-dot" style="background:#d35400;">Rn</div><span class="badge-name">RenderNet</span></a><span class="tool-desc">Tutarlı AI karakter görüntüleri üretmek için özelleşmiş.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://glambase.app" target="_blank"><div class="badge-dot" style="background:#c0392b;">G</div><span class="badge-name">Glambase</span></a><span class="tool-desc">Gelir elde etmek için AI influencer modeller oluşturur.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://lumalabs.ai" target="_blank"><div class="badge-dot" style="background:#16213e;">L</div><span class="badge-name">Luma AI</span></a><span class="tool-desc">Metinden veya görselden gerçekçi AI video üretir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://sora.com" target="_blank"><div class="badge-dot" style="background:#555;">S</div><span class="badge-name">Sora</span></a><span class="tool-desc">OpenAI'nın metin ve görselden video üreten modeli.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://leonardo.ai" target="_blank"><div class="badge-dot" style="background:#8e44ad;">Le</div><span class="badge-name">Leonardo AI</span></a><span class="tool-desc">Oyun ve sanat için yüksek kaliteli AI görsel üretir.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- MEETING -->
+    <div class="section">
+      <div class="sec-title"><span>📹</span><span class="sec-name">Meeting</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://tldv.io" target="_blank"><div class="badge-dot" style="background:#2d3436;">Tl</div><span class="badge-name">Tldv</span></a><span class="tool-desc">Toplantı kaydeder, özetler ve arama yapılabilir hale getirir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://krisp.ai" target="_blank"><div class="badge-dot" style="background:#0984e3;">Kr</div><span class="badge-name">Krisp</span></a><span class="tool-desc">Görüşmelerdeki arka plan gürültüsünü AI ile siler.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://otter.ai" target="_blank"><div class="badge-dot" style="background:#00b894;">O</div><span class="badge-name">Otter</span></a><span class="tool-desc">Gerçek zamanlı transkript ve toplantı notu çıkarır.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://avoma.com" target="_blank"><div class="badge-dot" style="background:#6c5ce7;">Av</div><span class="badge-name">Avoma</span></a><span class="tool-desc">Satış toplantılarını analiz edip koçluk önerileri sunar.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://fireflies.ai" target="_blank"><div class="badge-dot" style="background:#e17055;">F</div><span class="badge-name">Fireflies</span></a><span class="tool-desc">Toplantı botunu davet et, özet ve aksiyon maddeleri alsın.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://zoom.us/ai-companion" target="_blank"><div class="badge-dot" style="background:#2D8CFF;">Zo</div><span class="badge-name">Zoom AI</span></a><span class="tool-desc">Zoom içinde toplantı özetleyen ve soruları yanıtlayan AI asistan.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- CHATBOTS -->
+    <div class="section">
+      <div class="sec-title"><span>💬</span><span class="sec-name">Chatbots</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://poe.com" target="_blank"><div class="badge-dot" style="background:#a29bfe;">Po</div><span class="badge-name">Poe</span></a><span class="tool-desc">Tek platformda Claude, GPT-4, Gemini gibi modellere erişim.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://claude.ai" target="_blank"><div class="badge-dot" style="background:#cc785c;">C</div><span class="badge-name">Claude</span></a><span class="tool-desc">Uzun bağlam anlama ve derin analizde öne çıkıyor.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://gemini.google.com" target="_blank"><div class="badge-dot" style="background:#4285f4;">Ge</div><span class="badge-name">Gemini</span></a><span class="tool-desc">Google'ın çok modlu AI asistanı, arama entegrasyonuyla.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://chatgpt.com" target="_blank"><div class="badge-dot" style="background:#10a37f;">G</div><span class="badge-name">ChatGPT</span></a><span class="tool-desc">Dünyada en yaygın kullanılan AI sohbet asistanı.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://huggingface.co/chat" target="_blank"><div class="badge-dot" style="background:#ff7043;">H</div><span class="badge-name">HuggingChat</span></a><span class="tool-desc">Açık kaynak modellerin ücretsiz chatbot arayüzü.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- AUTOMATION -->
+    <div class="section">
+      <div class="sec-title"><span>⚙️</span><span class="sec-name">Automation</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://clickup.com" target="_blank"><div class="badge-dot" style="background:#7b68ee;">Cu</div><span class="badge-name">ClickUp</span></a><span class="tool-desc">Proje yönetimini AI görev önerileriyle otomatikleştirir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://drift.com" target="_blank"><div class="badge-dot" style="background:#1abc9c;">Dr</div><span class="badge-name">Drift</span></a><span class="tool-desc">Web sitesi ziyaretçilerini AI chatbot ile müşteriye dönüştürür.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://outreach.io" target="_blank"><div class="badge-dot" style="background:#2c3e50;">Ou</div><span class="badge-name">Outreach</span></a><span class="tool-desc">Satış ekipleri için e-posta dizilerini otomatize eder.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://emplifi.io" target="_blank"><div class="badge-dot" style="background:#e74c3c;">Em</div><span class="badge-name">Emplifi</span></a><span class="tool-desc">Sosyal medya yönetimi ve müşteri deneyimini birleştirir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://phrasee.co" target="_blank"><div class="badge-dot" style="background:#3498db;">Ph</div><span class="badge-name">Phrasee</span></a><span class="tool-desc">E-posta konu satırlarını AI ile test edip optimize eder.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://zapier.com/ai" target="_blank"><div class="badge-dot" style="background:#ff4a00;">Za</div><span class="badge-name">Zapier AI</span></a><span class="tool-desc">7000+ uygulama arasındaki iş akışlarını AI ile otomatize eder.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://make.com" target="_blank"><div class="badge-dot" style="background:#6d00cc;">Ma</div><span class="badge-name">Make AI</span></a><span class="tool-desc">Görsel senaryolar kurarak uygulamalar arası otomasyon sağlar.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- UI/UX -->
+    <div class="section">
+      <div class="sec-title"><span>🎨</span><span class="sec-name">UI / UX</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://uizard.io" target="_blank"><div class="badge-dot" style="background:#6c5ce7;">Ui</div><span class="badge-name">Uizard</span></a><span class="tool-desc">Metinden veya el çiziminden wireframe ve ekran tasarlar.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://visily.ai" target="_blank"><div class="badge-dot" style="background:#00cec9;">Vi</div><span class="badge-name">Visily</span></a><span class="tool-desc">Ekran görüntüsünü dönüştürülebilir tasarıma çevirir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://khroma.co" target="_blank"><div class="badge-dot" style="background:#fd79a8;">Kh</div><span class="badge-name">Khroma</span></a><span class="tool-desc">Beğenilerin doğrultusunda sonsuz renk paleti üretir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://usegalileo.ai" target="_blank"><div class="badge-dot" style="background:#a29bfe;">Ga</div><span class="badge-name">Galileo AI</span></a><span class="tool-desc">Prompt'tan tam UI tasarımı oluşturan generatif araç.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://www.visualeyes.design" target="_blank"><div class="badge-dot" style="background:#0984e3;">Ve</div><span class="badge-name">VisualEyes</span></a><span class="tool-desc">Kullanıcıların tasarımda nereye baktığını simüle eder.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- IMAGE -->
+    <div class="section">
+      <div class="sec-title"><span>🖼️</span><span class="sec-name">Image</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://stylar.ai" target="_blank"><div class="badge-dot" style="background:#e17055;">St</div><span class="badge-name">Stylar</span></a><span class="tool-desc">Fotoğrafları farklı sanatsal stillere dönüştürür.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://freepik.com" target="_blank"><div class="badge-dot" style="background:#00b894;">Fp</div><span class="badge-name">Freepik</span></a><span class="tool-desc">Stok görseller ve AI görsel üretimi bir arada.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://phygital.plus" target="_blank"><div class="badge-dot" style="background:#6c5ce7;">P+</div><span class="badge-name">Phygital+</span></a><span class="tool-desc">Sanat üretimi ve NFT odaklı yaratıcı AI platformu.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://stockimg.ai" target="_blank"><div class="badge-dot" style="background:#d35400;">Si</div><span class="badge-name">StockIMG</span></a><span class="tool-desc">Her kategori için AI üretimi stok fotoğraf oluşturur.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://www.bing.com/images/create" target="_blank"><div class="badge-dot" style="background:#0078d4;">Bc</div><span class="badge-name">Bing Create</span></a><span class="tool-desc">Microsoft'un ücretsiz DALL-E tabanlı görsel üretici.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://midjourney.com" target="_blank"><div class="badge-dot" style="background:#1a1a2e;">Mj</div><span class="badge-name">Midjourney</span></a><span class="tool-desc">Sanatsal kalitede en güçlü sonuçları veren AI görsel üretici.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://firefly.adobe.com" target="_blank"><div class="badge-dot" style="background:#e63946;">Af</div><span class="badge-name">Adobe Firefly</span></a><span class="tool-desc">Telif güvenli görsel üreten Adobe'nin AI aracı.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- VIDEO -->
+    <div class="section">
+      <div class="sec-title"><span>🎬</span><span class="sec-name">Video</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://pictory.ai" target="_blank"><div class="badge-dot" style="background:#8e44ad;">Pi</div><span class="badge-name">Pictory</span></a><span class="tool-desc">Blog veya metni otomatik kısa videoya dönüştürür.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://heygen.com" target="_blank"><div class="badge-dot" style="background:#e74c3c;">He</div><span class="badge-name">HeyGen</span></a><span class="tool-desc">AI avatar ile farklı dillerde konuşan video üretir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://nullface.ai" target="_blank"><div class="badge-dot" style="background:#2d3436;">Nf</div><span class="badge-name">Nullface</span></a><span class="tool-desc">Yüz değiştirme teknolojisiyle AI video efektleri sunar.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://decohere.ai" target="_blank"><div class="badge-dot" style="background:#0984e3;">De</div><span class="badge-name">Decohere</span></a><span class="tool-desc">Metinden tutarlı, sinematik AI video klip oluşturur.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://synthesia.io" target="_blank"><div class="badge-dot" style="background:#00b894;">Sy</div><span class="badge-name">Synthesia</span></a><span class="tool-desc">Gerçekçi AI sunucu ile profesyonel eğitim videosu yapar.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://runwayml.com" target="_blank"><div class="badge-dot" style="background:#1a1a2e;">Rw</div><span class="badge-name">Runway ML</span></a><span class="tool-desc">Profesyonel AI video oluşturma ve düzenleme platformu.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- DESIGN -->
+    <div class="section">
+      <div class="sec-title"><span>🖌️</span><span class="sec-name">Design</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://looka.com" target="_blank"><div class="badge-dot" style="background:#f39c12;">Lo</div><span class="badge-name">Looka</span></a><span class="tool-desc">Dakikalar içinde marka kimliği ve logo tasarlar.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://clipdrop.co" target="_blank"><div class="badge-dot" style="background:#1a1a2e;">Cd</div><span class="badge-name">Clipdrop</span></a><span class="tool-desc">Fotoğraf arka planını kaldırma ve görsel düzenleme aracı.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://autodraw.com" target="_blank"><div class="badge-dot" style="background:#27ae60;">Ad</div><span class="badge-name">Autodraw</span></a><span class="tool-desc">El çizimlerini temiz vektör şekillere dönüştüren Google aracı.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://vance.ai" target="_blank"><div class="badge-dot" style="background:#3498db;">Va</div><span class="badge-name">Vance AI</span></a><span class="tool-desc">Fotoğrafları keskinleştirir, büyütür ve gürültüden arındırır.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://designs.ai" target="_blank"><div class="badge-dot" style="background:#9b59b6;">Ds</div><span class="badge-name">Designs AI</span></a><span class="tool-desc">Logo, video, sosyal medya görseli hepsini tek platformda üretir.</span></div>
+      <div class="tool-row"><a class="tool-badge is-new" href="https://canva.com/ai-image-generator" target="_blank"><div class="badge-dot" style="background:#00c4cc;">Ca</div><span class="badge-name">Canva AI</span></a><span class="tool-desc">Tasarım şablonlarında AI ile görsel ve metin üretir.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- MARKETING -->
+    <div class="section">
+      <div class="sec-title"><span>📣</span><span class="sec-name">Marketing</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://adcopy.ai" target="_blank"><div class="badge-dot" style="background:#e74c3c;">Ac</div><span class="badge-name">AdCopy</span></a><span class="tool-desc">Dönüşüm odaklı reklam metni ve başlık üretir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://predis.ai" target="_blank"><div class="badge-dot" style="background:#3498db;">Pr</div><span class="badge-name">Predis AI</span></a><span class="tool-desc">Sosyal medya gönderilerini görsel ve metniyle hazırlar.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://www.howlerai.com" target="_blank"><div class="badge-dot" style="background:#e67e22;">Ho</div><span class="badge-name">Howler AI</span></a><span class="tool-desc">Ürününüz için gazetecilere otomatik basın bülteni gönderir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://bardeen.ai" target="_blank"><div class="badge-dot" style="background:#2c3e50;">Ba</div><span class="badge-name">Bardeen AI</span></a><span class="tool-desc">Tarayıcıda tekrarlayan pazarlama görevlerini otomatize eder.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://adcreative.ai" target="_blank"><div class="badge-dot" style="background:#c0392b;">Cr</div><span class="badge-name">AdCreative</span></a><span class="tool-desc">Yüksek performanslı reklam görselleri ve banner üretir.</span></div>
+    </div>
+    <div class="divider"><div class="divider-line"></div></div>
+
+    <!-- TWITTER -->
+    <div class="section">
+      <div class="sec-title"><span>𝕏</span><span class="sec-name">Twitter / X</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://typefully.com" target="_blank"><div class="badge-dot" style="background:#1a1a2e;">Ty</div><span class="badge-name">Typefully</span></a><span class="tool-desc">Thread'leri düzenleyip en iyi saatte yayınlamayı sağlar.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://postwise.ai" target="_blank"><div class="badge-dot" style="background:#00b894;">Pw</div><span class="badge-name">Postwise</span></a><span class="tool-desc">Viral tweet ve thread AI ile oluşturup planlar.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://metricool.com" target="_blank"><div class="badge-dot" style="background:#0984e3;">Mc</div><span class="badge-name">Metricool</span></a><span class="tool-desc">Tüm sosyal medya analitiğini tek panelde gösterir.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://tribescaler.com" target="_blank"><div class="badge-dot" style="background:#6c5ce7;">Tr</div><span class="badge-name">Tribescaler</span></a><span class="tool-desc">Hook önerileriyle tweet etkisini ve etkileşimi artırır.</span></div>
+      <div class="tool-row"><a class="tool-badge" href="https://tweethunter.io" target="_blank"><div class="badge-dot" style="background:#e17055;">Th</div><span class="badge-name">TweetHunter</span></a><span class="tool-desc">Viral tweetleri ilham kaynağı olarak keşfedip içerik üretir.</span></div>
+    </div>
+
+  </div>
+  <div class="footer">80+ AI Aracı &nbsp;·&nbsp; 15 Kategori &nbsp;·&nbsp; claude.ai ile oluşturuldu</div>
+</div>
+</body>
+</html>
